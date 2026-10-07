@@ -45,10 +45,27 @@ int main(int argc, char *argv[]) {
     /* 1. Configurer le generateur via serie_configurer(premier, pas).
      *    ATTENTION : cet appel doit venir AVANT serie_produire. */
     /* ... a completer ... */
+    serie_configurer(premier, pas);
 
     /* 2. Allouer, produire, afficher, liberer.
      *    (identique a l'etape 1) */
     /* ... a completer ... */
+    tab=malloc(sizeof(int)*n);
+    if (tab==NULL){
+        return EXIT_FAILURE;
+    }
+
+    if (serie_produire(n, tab, n)!=0){
+        free(tab);
+        return EXIT_FAILURE;
+    }
+
+    printf("- Production de %d symbole(s) :\n",n);
+    for (i = 0; i < n; i++) {
+        printf("__GLB_%d__\n", tab[i]);
+    }
+
+    free(tab);
 
     return EXIT_SUCCESS;
 }
